@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form style = "float:right">
+    {% csrf_token %}
+    <input type="text" name = "keyword" class= "input-sm" maxlength="64" placeholder="Ara">
+    <button type="submit" class="btn btn-danger btn-sm">Ara</button>
+    
+    </form>
+<h1>Makaleler</h1>
+
+<hr>
+
+
+{% if articles %}
+{% for article in articles %}
+<div class="row">
+    
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          {% if article.article_image %}
+          <img class="img-fluid rounded" src="{{article.article_image.url}}" alt="">
+          
+          {% endif %}
+          <div class="card-body">
+            <h3 class="card-title">{{article.title}}</h3>
+            <p class="card-text">{{article.content|safe|truncatewords:30}}</p>
+            <a style = "float:right" href="{% url 'article:detail' article.id %}" class="btn btn-primary">Devamını Oku &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            {{article.created_date}} 
+            <a href="#">{{article.author.username}}</a>
+          </div>
+      </div>
+
+
+        </div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+<div class = "alert alert-danger">
+Makale bulunamadı
+</div>
+{% endif %}
+
+{% endblock body %}

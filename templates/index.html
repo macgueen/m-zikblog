@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<main role="main">
+    <div class = "jumbotron">
+        <div class="container">
+        <h3>Müzik Blog'a Hoşgeldiniz</h3>
+        <p>Bu blogta müzik ile ilgili ihtiyacınız olan her şeyi bulabilirsiniz. <br>
+            <a href="{% url 'article:articles' %}">Makaleler'e buraya tıklayarak veya yukarıdaki makaleler butonundan ulaşabilirsiniz.</a>
+        </p>
+        </div>
+    </div>
+</main>
+<hr>
+
+{% endblock body %}
